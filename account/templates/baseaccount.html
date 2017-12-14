@@ -1,0 +1,186 @@
+{% load staticfiles %}
+    {% comment %}
+        
+            <nav class="navbar navbar-fixed-top scrolling-navbar double-nav">
+            <!-- SideNav slide-out button -->
+            <div class="float-xs-left">
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+            </div>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-dn">
+                <p>Default Homepage</p>
+            </div>
+            <ul class="nav navbar-nav float-xs-right">
+                <li class="nav-item ">
+                    <a class="nav-link"> <span class="tag red z-depth-1">2</span> <i class="fa fa-shopping-cart"></i> <span class="hidden-sm-down">Mi Carrito</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link"><i class="fa fa-envelope"></i> <span class="hidden-sm-down">Contacto</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Soporte</span></a>
+                    
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{%  url "panel:panelp" %}"><i class="fa fa-sign-in"></i> <span class="hidden-sm-down">Busqueda Avanzada</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    {% if request.user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <span class="hidden-sm-down">Perfil</span></a>
+                        <div class="dropdown-menu dropdown-primary dd-right" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a class="dropdown-item" href="">Salir</a>
+                        <a class="dropdown-item" href="#">Mi cuenta</a>
+                    {% else %}
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <span class="hidden-sm-down">Acceder</span></a>
+                        <div class="dropdown-menu dropdown-primary dd-right" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a class="dropdown-item" href="{% url "login" %}">Login</a>
+                        <a class="dropdown-item" href="{% url "register" %}">Registrarse</a>
+                    {% endif %}
+
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div>
+    {% endcomment %}
+
+                
+        
+   {% comment %}
+        <div id="header">
+                <span class="logo"></span>
+        {% if request.user.is_authenticated %}
+        <ul class="menu">
+
+
+        </ul>
+        {% endif %}
+
+        <span class="user">
+        {% if request.user.is_authenticated %}
+            Hola {{ request.user.first_name }}, <a href="{% url "logout" %}">Salir</a>
+        {% else %}
+            <a href="{% url "login" %}">Log-in</a>
+        {% endif %}
+        </span>
+    </div>
+    {% endcomment %} 
+
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">×</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap Template</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap  core CSS -->
+    <link href="{% static "css/bootstrap.minn.css" %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static "css/mdb.minn.css" %}" rel="stylesheet">
+
+    <!-- Custom Style -->
+    <link href="{% static "css/style.minn.css" %}" rel="stylesheet">
+
+    <!-- Prism -->
+    <link href="{% static  "css/prism.minn.css" %}" rel="stylesheet">
+    <style type="text/css" media="screen">
+        .pink-skin {
+    background-color: #ab1550;
+}
+        
+    </style>
+
+
+</head>
+
+
+<body>
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-fixed-top scrolling-navbar navbar-dark pink-skin">
+
+        <div class="container">
+
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="/">MKYSpace</a>
+            <!--Links-->
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <!--Search form-->
+            
+
+        </div>
+    </nav>
+    <!--/.Navbar-->
+        <div id="content">
+            <section class="section mt-5">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6 mb-3">
+                        <!-- Signup form -->
+                        <div class="card">
+                            <div class="card-block">
+                            <br>
+                            <br>
+                            <br>
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="col-lg-3"></div>        
+                </div>        
+            </section>
+    </div>
+    </div>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static "css/jquery-2.2.1.minn.js"  %}"></script>
+    <!-- Tooltips and Popups -->
+    <script type="text/javascript" src="{% static "css/tether.minn.js"  %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static  "css/bootstrap.minn.js"  %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static "css/mdb.minn.js"  %}"></script>
+    <!-- Prism -->
+    <script type="text/javascript" src="{% static "css/prism.minn.js"  %}"></script>
+
+    <script type="text/javascript">
+        Waves.attach('.btn, .btn-floating', ['waves-light']);
+        Waves.attach('.view .mask', ['waves-light']);
+        Waves.attach('.waves-light', ['waves-light']);
+        Waves.attach('.navbar li', ['waves-light']);
+        Waves.init();
+    </script>
+
+
+</body>
+
+</html>

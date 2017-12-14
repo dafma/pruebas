@@ -1,0 +1,224 @@
+
+
+
+{% extends "base.html" %}
+{% block tabla %}
+     <style type="text/css">
+        /*    --------------------------------------------------
+	:: Login Section
+	-------------------------------------------------- */
+#login {
+    padding-top: 50px
+}
+#login .form-wrap {
+    width: 30%;
+    margin: 0 auto;
+}
+#login h1 {
+    color: #1fa67b;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#login .form-group {
+    margin-bottom: 25px;
+}
+#login .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#login .checkbox.show:before {
+    content: '\e013';
+    color: #1fa67b;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+#login .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+#login .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login .btn.btn-custom {
+    font-size: 14px;
+	margin-bottom: 20px;
+}
+#login .forget {
+    font-size: 13px;
+	text-align: center;
+	display: block;
+}
+
+/*    --------------------------------------------------
+	:: Inputs & Buttons
+	-------------------------------------------------- */
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+	background-color: #1fa67b;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}
+
+/*    --------------------------------------------------
+    :: Footer
+	-------------------------------------------------- */
+#footer {
+    color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+#footer p {
+    margin-bottom: 0;
+}
+#footer a {
+    color: inherit;
+}
+    </style>
+<section id="login">
+    <div class="container">
+    	<div class="row">
+    	    <div class="col-xs-12">
+        	    <div class="form-wrap">
+                <h1>Desarrollo Interauto Pizarrones</h1>
+                    <form role="form" action="{% url "login" %}" method="post" id="login-form" autocomplete="off">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label  class="sr-only">Usuario</label>
+                            Usuario: {{ form.username }}
+                           <!-- <input type="email" name="text" id="email" class="form-control" placeholder="Usuario"> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">Contraseña</label>
+                            Pass : {{ form.password }}
+                            <!-- <input type="password" name="key" id="key" class="form-control" placeholder="Contraseña"> -->
+                        </div>
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Entrar">
+                    </form>
+                    <hr>
+                    {% if form.errors %}
+                    <p>Tu usuario o password son incorrectos, favor ingresarlos de nuevo</p>
+                    {% endif %}
+        	    </div>
+    		</div> <!-- /.col-xs-12 -->
+    	</div> <!-- /.row -->
+    </div> <!-- /.container -->
+</section>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Powered by <strong>LPG Consultores</strong></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+function showPassword() {
+
+    var key_attr = $('#key').attr('type');
+
+    if(key_attr != 'text') {
+
+        $('.checkbox').addClass('show');
+        $('#key').attr('type', 'text');
+
+    } else {
+
+        $('.checkbox').removeClass('show');
+        $('#key').attr('type', 'password');
+
+    }
+
+}
+</script>
+
+{% endblock %}
+
+
+{% comment %}
+{% extends "baseaccount.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+<style type="text/css" media="screen">
+    element.style {
+    background-color: rgba(0,0,0,0);
+}
+</style>
+    <h1>Log-in</h1>
+    {% if form.errors %}
+        <p>Tu usuario y password sn incorrectos, porfavor inresalos de nuevo</p>
+    {% else %}
+        <p>Porfavor ingresa tus datos en el siuiente formulario. Si no tienes una cuenta <a href="{% url "register" %}">registrate aqui.</a></p>
+    {% endif %}
+
+        <!--Body
+        <div class="md-form">
+            <i class="fa fa-envelope prefix"></i>
+            <input type="text" id="form2" class="form-control">
+            <label for="form2">Your email</label>
+        </div>
+        <div class="md-form">
+            <i class="fa fa-lock prefix"></i>
+            <input type="password" id="form4" class="form-control">
+            <label for="form4">Your password</label>
+        </div>-->
+
+    <div class="login-form">
+        <form action="{% url "login" %}" method="post">
+            <div class="md-form">
+                <i class="fa fa-user prefix"></i>
+                {{ form.username }}
+                <label for="form2">Usuario</label>
+            </div>
+            <div class="md-form">
+                <i class="fa fa-lock prefix"></i>
+                {{ form.password }}
+                <label for="form4">Contraseña</label>
+            </div>
+
+
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Log-in">
+            </div>
+        </form>
+        <p><a href="{% url "password_reset" %}">As olvidado tu password?</a></p>
+    </div>
+    <div class="social">
+        <ul>
+
+
+        </ul>
+    </div>
+
+{% endcomment %}
+
+
+

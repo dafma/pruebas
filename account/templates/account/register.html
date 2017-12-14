@@ -1,0 +1,44 @@
+{% extends "baseaccount.html" %}
+
+{% block title %}crea una cuenta{% endblock %}
+
+{% block content %}
+<style type="text/css" media="screen">
+    element.style {
+    background-color: #3F51B5;
+}
+</style>
+    <h1>Crea una cuenta!</h1>
+    <p>porfavor registrate usando el siguiente formulario</p>
+    <div class="login-form">
+    	<form action="." method="post">
+        	{% csrf_token %}
+        	<div class="md-form">
+        		<i class="fa fa-user prefix"></i>
+        		{{ user_form.username }}
+        		<label for="form2">Usuario</label>
+        	</div>
+        	<div class="md-form">
+        		<i class="fa fa-envelope prefix"></i>
+        		{{ user_form.email }}
+        		<label for="form2">Email</label>
+        	</div>
+        	<div class="md-form">
+        		<i class="fa fa-barcode prefix"></i>
+        		{{ user_form.password }}
+        		<label for="form2">Password</label>
+        	</div>
+        	<div class="md-form">
+        		<i class="fa fa-barcode prefix"></i>
+        		{{ user_form.password2 }}
+        		<label for="form2">Repite</label>
+        	</div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-deep-purple" value="CREAR">
+            </div>
+     		</form>
+    	</div>
+
+    </div>
+
+{% endblock %}
