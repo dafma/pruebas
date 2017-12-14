@@ -27,7 +27,7 @@ class ContenedorAdmin(admin.ModelAdmin):
     list_filter = ('ESTATUS', 'ESTADO', 'FWD')
     inlines = [ReferenciaInlineAdmin, ]
     actions = ['avanzar_ECP', 'avanzar_ADUANA', 'avanzar_ARRIBADO', 'avanzar_PAGPED', 'avanzar_SOL', 'avanzar_PANTACO',
-               'avanzar_GONDOLA', 'avanzar_SEMANA', 'avanzar_CONCLUIDO', 'export_xls']
+               'avanzar_ENRUTA', 'avanzar_GONDOLA',  'avanzar_SEMANA', 'avanzar_CONCLUIDO', 'export_xls']
 
     fieldsets = (
         ('General', {
@@ -50,7 +50,7 @@ class ContenedorAdmin(admin.ModelAdmin):
 
         ('Fechas-tiempo', {
             'classes': ('collapse', ),
-            'fields': ('FCECP', 'FCADUANA', 'FCARRIBADO', 'FCPAGPED', 'FCSOL', 'FCGONDOLA', 'FCPENTACO', 'FCSEMANA')
+            'fields': ('FCECP', 'FCADUANA', 'FCARRIBADO', 'FCPAGPED', 'FCSOL', 'FCGONDOLA', 'FCENRUTA', 'FCPENTACO', 'FCSEMANA')
         })
 
     )
@@ -85,6 +85,10 @@ class ContenedorAdmin(admin.ModelAdmin):
     def avanzar_PANTACO(self, request, queryset):
         queryset.update(ESTADO='PENTACO', FCPENTACO=timezone.now())
     avanzar_PANTACO.short_description = "Avanzar PANTACO"
+
+    def avanzar_ENRUTA(self, request, queryset):
+        queryset.update(ESTADO='ENRUTA', FCENRUTA=timezone.now())
+    avanzar_ENRUTA.short_description = "Avanzar ENRUTA"
 
     def avanzar_GONDOLA(self, request, queryset):
         queryset.update(ESTADO='GONDOLA', FCGONDOLA=timezone.now())

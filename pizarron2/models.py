@@ -14,6 +14,7 @@ ESTADOSP_CHOICES = (
     ('PAGPED', 'PAGPED'),
     ('SOL', 'SOL'),
     ('GONDOLA', 'GONDOLA'),
+    ('ENRUTA', 'ENRUTA'),
     ('PENTACO', 'PENTACO'),
     ('SEMANA', 'SEMANA'),
 )
@@ -128,6 +129,7 @@ class Contenedor(models.Model):
     FCPAGPED = models.DateField(null=True, blank=True)
     FCSOL = models.DateField(null=True, blank=True)
     FCGONDOLA = models.DateField(null=True, blank=True)
+    FCENRUTA = models.DateField(null=True, blank=True)
     FCPENTACO = models.DateField(null=True, blank=True)
     FCSEMANA = models.DateField(null=True, blank=True)
 

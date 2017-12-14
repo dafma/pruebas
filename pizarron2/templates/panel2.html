@@ -2170,6 +2170,338 @@
         </table>
         </div>
          <!-- GONDOLA FIN  -->
+          <!-- ENRUTA INICIO -->
+         <div class="col-md-1 col-xs-1 gopa">
+            <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        ENRUTA
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+             {% for foo in  enruta %}
+                 <tr >
+                    <td>
+                        <button type="button" class="btn gopa" data-toggle="modal" data-target=".{{foo.id}}">
+                            {% for ard in foo.contenedorr.all  %}
+                                 {{ ard.REFERENCIA }} <br>
+                            {% endfor %}
+                        </button>
+                        <div class="row">
+                            {% if not foo.NUEVOS  %}
+                                 {% else %}
+                                     <i class="fa fa-gift" aria-hidden="true"></i>
+                                 {% endif %}
+                                {% if not foo.MEJORAS  %}
+                                {% else  %}
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                {% endif %}
+                                {% if not foo.OMISIONPREVIOORIGEN %}
+                                {% else  %}
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                {% endif %}
+                                {% if not  foo.ESPECIAL %}
+                                {% else  %}
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                {% endif %}
+                            </div>
+                        <div class="modal fade {{foo.id}}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h2 class="modal-title" id="myModalLabel"> <strong> Detalles  {{ foo.REFERENCIA }}</strong></h2>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div id="exTab3" class="container">
+                                                    <ul  class="nav nav-pills">
+                                                        <li class="active">
+                                                        <a  hrefid#1}}" data-toggle="tab">General</a>
+                                                        </li>
+                                                        <li><a hrefid#2}}" data-toggle="tab">Referencias</a>
+                                                        </li>
+                                                        <li><a hrefid#3}}" data-toggle="tab">Tiempos</a>
+                                                        </li>
+                                                    </ul>
+                                                        <div class="tab-content clearfix">
+                                                            <div class="tab-pane active" iid"1}}">
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <h3>General</h3>
+                                                                        <table class="table table-bordered">
+                                                                        <tr>
+                                                                            <td>NO. CONTENEDOR</td>
+                                                                            <td>{{ foo.CONTENEDORNO }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>ORIGEN</td>
+                                                                            <td>{{ foo.ORIGEN|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>DESTINO</td>
+                                                                            <td>{{ foo.DESTINO|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>IMPORTE PEDIDO</td>
+                                                                            <td>{{ foo.IMPORTEPEDIDO|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>IMPORTE FACTURA</td>
+                                                                            <td>{{ foo.IMPORTEFACTURA|intcomma|default_if_none:"-"   }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>MONTO FLETE</td>
+                                                                            <td>$ {{ foo.MONTOFLETE|intcomma  }}</td>
+                                                                        </tr>
+
+
+                                                                    </table>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <h3>FORWARDER</h3>
+                                                                        <table class="table table-bordered">
+                                                                        <tr>
+                                                                            <td>FORWARDER</td>
+                                                                            <td>{{ foo.FWD|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>FACTURA FWD</td>
+                                                                            <td>{{ foo.FACTURAFWD|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>FECHA PAGO FWD</td>
+                                                                            <td>{{ foo.FECHAPAGOFWD|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                        <h3>Datos Técnicos del Contenedor</h3>
+                                                                        <table class="table table-bordered">
+                                                                        <tr>
+                                                                            <td>CARGA</td>
+                                                                            <td>{{ foo.CARGA|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>KILOGRAMOS</td>
+                                                                            <td>{{ foo.KG|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>CBM</td>
+                                                                            <td>{{ foo.CBM|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                                   <tr>
+                                                                            <td>% KG CONSOLIDADO</td>
+                                                                            <td>{{ foo.KGPCONSOLIDADO|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                              <tr>
+                                                                            <td>% CBM CONSOLIDADO</td>
+                                                                            <td>{{ foo.CBMPCONSOLIDADO|default_if_none:"-"  }}</td>
+                                                                        </tr>
+                                                                    </table>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th  class="text-center">NUEVOS</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{ foo.NUEVOS|default_if_none:"-"  }}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th  class="text-center">FECHA ORIGINAL</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{ foo.MEJORAS|default_if_none:"-"  }}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                         <table class="table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th  class="text-center">OMISIÓN PREVIO ORIGEN</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{ foo.OMISIONPREVIOORIGEN|default_if_none:"-"  }}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                                                                                                 <table class="table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th class="text-center">ESPECIAL</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{ foo.ESPECIAL|default_if_none:"-"  }}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane" iid"2}}">
+                                                                 <table class="table">
+                                                                    <thead>
+                                                                         <tr>
+                                                                             <th>
+                                                                                 ID MOV
+                                                                             </th>
+                                                                             <th>
+                                                                                 REFERENCIA
+                                                                             </th>
+                                                                             <th>
+                                                                                 IMPORTEPEDIDO
+                                                                             </th>
+                                                                             <th>
+                                                                                 ESTA EN PAGO
+                                                                             </th>
+                                                                             <th>
+                                                                                 IMPORTE FACTURA
+                                                                             </th>
+                                                                             <th>
+                                                                                 FECHA PEDIDO
+                                                                             </th>
+                                                                             <th>
+                                                                                 FECHA TENT. ENTREGA
+                                                                             </th>
+                                                                             <th>
+                                                                                 KG
+                                                                             </th>
+                                                                             <th>
+                                                                                 CBM
+                                                                             </th>
+                                                                             <th>
+                                                                                 CARGA
+                                                                             </th>
+                                                                         </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                       {% for fa in foo.contenedorr.all %}
+                                                                      <tr>
+                                                                      <td>{{ fa.IDMOV|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.REFERENCIA|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.IMPORTEPEDIDO|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.ESTAENPAGO|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.IMPORTEFACTURA|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.FECHAPEDIDO|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.FECHATENTENTREGA|default_if_none:"-" }}</td>
+                                                                          <td>{{ fa.KG|default_if_none:"-" }}</td>
+                                                                          <td>{{ fa.CBM|default_if_none:"-" }}</td>
+                                                                      <td>{{ fa.CARGA|default_if_none:"-" }}</td>
+                                                                      </tr>
+                                                                    {% endfor %}
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane" iid"3}}">
+                                                                <hr>
+                                                                <div class="col-md-4"></div>
+                                                                <div class="col-md-4">
+                                                                            <blockquote>
+                                                                          <p>{{ foo.FCGONDOLA|timesince:foo.hoy }}</p>
+                                                                          <footer>Tiempo en Gondola</footer>
+                                                                        </blockquote>
+
+                                                                    <ul class="list-group">
+                                                                        {% if foo.ecpAduana != None %}
+                                                                         <li class="list-group-item">
+                                                                             {{foo.ecpAduana  }}<span class="badge aduana">Aduana</span><span class="badge ecp"> Eti-Eta-Pre</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.aduanaArribado != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.aduanaArribado  }}<span class="badge arribado">Arribado</span><span class="badge aduana"> Aduana</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.aduanaPagped != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.aduanaPagped  }}<span class="badge arribado">PagPed</span><span class="badge aduana"> Aduana</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.aduanaSol != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.aduanaSol  }}<span class="badge arribado">Sol</span><span class="badge aduana"> Aduana</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.arribadoGondola != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.arribadoGondola  }}<span class="badge gopa">Gondola</span><span class="badge arribado"> Arribado</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.pagpedGondola != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.pagpedGondola }}<span class="badge gopa">Gondola</span><span class="badge arribado"> Pag Ped</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.solGondola != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.solGondola  }}<span class="badge gopa">Gondola</span><span class="badge arribado"> Sol</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.arribadoPentaco != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.arribadoPentaco  }}<span class="badge gopa">Pentaco</span><span class="badge arribado"> Arribado</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.pagpedPentaco != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.pagpedPentaco }}<span class="badge gopa">Pentaco</span><span class="badge arribado"> Pag Ped</span>
+                                                                         </li>
+                                                                        {% endif %}
+                                                                        {% if foo.solPentaco != None %}
+                                                                        <li class="list-group-item">
+                                                                             {{foo.solPentaco  }}<span class="badge gopa">Pentaco</span><span class="badge arribado"> Sol</span>
+                                                                         </li>
+                                                                        {% endif %}
+
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-4"></div>
+                                                                <div class="container">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+<br/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                </tr>
+             {% endfor %}
+            </tbody>
+        </table>
+        </div>
+         <!-- ENRUTA FIN  -->
          <!-- PENTACO INICO -->
          <div class="col-md-1 col-xs-1 gopa">
             <table class="table">

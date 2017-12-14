@@ -60,6 +60,20 @@ def index(request):
                                                     'solPentaco': "DATEDIFF(DAY,FCSOL, FCPENTACO)",
                                                     'hoy': "getdate()"})
 
+    enruta = Contenedor.objects.filter(ESTATUS='PENDIENTE', ESTADO='ENRUTA').extra(
+                                            select={'diaDeLaSemana': "DATEPART(WEEKDAY, FECHAPREVENTA)",
+                                                    'ecpAduana': "DATEDIFF(DAY,FCECP, FCADUANA)",
+                                                    'aduanaArribado': "DATEDIFF(DAY,FCADUANA, FCARRIBADO)",
+                                                    'aduanaPagped': "DATEDIFF(DAY,FCADUANA, FCPAGPED)",
+                                                    'aduanaSol': "DATEDIFF(DAY,FCADUANA, FCSOL)",
+                                                    'arribadoGondola': "DATEDIFF(DAY,FCARRIBADO, FCGONDOLA)",
+                                                    'pagpedGondola': "DATEDIFF(DAY,FCPAGPED, FCGONDOLA)",
+                                                    'solGondola': "DATEDIFF(DAY,FCSOL, FCGONDOLA)",
+                                                    'arribadoPentaco': "DATEDIFF(DAY,FCARRIBADO, FCPENTACO)",
+                                                    'pagpedPentaco': "DATEDIFF(DAY,FCPAGPED, FCPENTACO)",
+                                                    'solPentaco': "DATEDIFF(DAY,FCSOL, FCPENTACO)",
+                                                    'hoy': "getdate()"})
+
     pentaco = Contenedor.objects.filter(ESTATUS='PENDIENTE', ESTADO='PENTACO').extra(
                                             select={'diaDeLaSemana': "DATEPART(WEEKDAY, FECHAPREVENTA)",
                                                     'ecpAduana': "DATEDIFF(DAY,FCECP, FCADUANA)",
@@ -106,6 +120,7 @@ def index(request):
         "pagped": pagped,
         "sol": sol,
         "gondola": gondola,
+        "enruta": enruta,
         "pentaco": pentaco,
         "semana": semana,
         "asemana": semanadelanio,
