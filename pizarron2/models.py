@@ -138,6 +138,10 @@ class Contenedor(models.Model):
         importefactura = sum(item.IMPORTEFACTURA for item in self.contenedorr.all())
         return importefactura
 
+    def get_importepedido(self):
+        importepedido = sum(item.IMPORTEPEDIDO for item in self.contenedorr.all())
+        return importepedido
+
     def get_kg_total(self):
         kg = sum(item.KG for item in self.contenedorr.all())
         return kg
@@ -352,11 +356,12 @@ class Contenedor(models.Model):
         self.KG = self.get_kg_total()
         self.CBM = self.get_cbm()
         self.IMPORTEFACTURA = self.get_importefactura()
+        self.IMPORTEPEDIDO = self.get_importepedido()
         fun_consolidado = self.get_porcentaje()
 
         self.KGPCONSOLIDADO = fun_consolidado[0]
         self.CBMPCONSOLIDADO = fun_consolidado[1]
-        sself.MONTOPCONSOLIDADO = fun_consolidado[2]
+        self.MONTOPCONSOLIDADO = fun_consolidado[2]
 
         #fun = self.get_ecp()
         #self.FECHAETA = fun[0]
