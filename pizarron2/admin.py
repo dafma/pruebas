@@ -43,6 +43,10 @@ class ContenedorAdmin(admin.ModelAdmin):
         ('Fechas', {
             'fields': ('FECHABL', 'FECHAETA', 'FECHACEDIS', 'FECHAPREVENTA', 'FECHASEMANA')
         }),
+        ('Fechas  Reales', {
+            'fields': (
+            'RALFECHAETA', 'RALFECHABL')
+        }),
         ('Comentarios', {
             'classes': ('collapse',),
             'fields': ('NUEVOS', 'MEJORAS', 'OMISIONPREVIOORIGEN', 'ESPECIAL')

@@ -5,10 +5,7 @@
   <title>Interauto Ventas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
-
-
-      <style>
+    <style>
         * {
   box-sizing: border-box;
 }
@@ -271,7 +268,29 @@ button {
 
 <body>
 
-<main>
+{{ user.username }}
+{% if user.username == 'interautopizarron' %}
+    <main>
+      <section>
+      </section>
+
+      <section>
+        <article>
+          <h2>Pizarrón 2</h2>
+          <p><a href="panel2/" class="links" target="_blank">Acceder</a></p>
+        </article>
+      </section>
+
+      <section>
+        <article>
+          <h2>Panel Title</h2>
+          <p>This is some description text for this panel.</p>
+        </article>
+      </section>
+    </main>
+{% else %}
+
+    <main>
   <section>
 
   </section>
@@ -301,6 +320,11 @@ button {
     </article>
   </section>
 </main>
+{% endif %}
+
+
+
+
 <button>Toggle images</button>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 

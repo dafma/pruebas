@@ -104,6 +104,10 @@ class Contenedor(models.Model):
     FECHACEDIS = models.DateField("FECHA CEDIS",  null=True, blank=True)
     FECHAPREVENTA = models.DateField("FECHA PREVENTA", null=True, blank=True)
 
+    #reales
+    RALFECHAETA = models.DateField(" REAL FECHA ETA", null=True, blank=True)
+    RALFECHABL = models.DateField(" REAL FECHA BL", null=True, blank=True)
+
     FECHASEMANA = models.DateField("FECHA SEMANA", null=True, blank=True)
     ORIGEN = models.CharField("ORIGEN", choices=ORIGEN_CHOICES, max_length=10, null=True, blank=True)
     DESTINO = models.CharField("DESTINO", choices=DESTINO_CHOICES, max_length=10, null=True, blank=True)
